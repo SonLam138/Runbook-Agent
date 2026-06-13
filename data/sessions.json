@@ -1,0 +1,208 @@
+{
+  "local_chat_01": {
+    "mode": "idle",
+    "original_query": "",
+    "clarify_turns": 0,
+    "pending_slot": null,
+    "slots": {
+      "issue_type": null,
+      "service": null,
+      "error_message": null
+    },
+    "history": [
+      {
+        "role": "user",
+        "text": "quên mật khẩu"
+      },
+      {
+        "role": "assistant",
+        "text": "📘 Tiêu đề: reset password\n🖥 Dịch vụ: Active Directory\n\n🔹 Điều kiện thực hiện:\n- Tài khoản enabled\n- Tài khoản không bị khóa\n\n🔹 Các bước thực hiện:\n1. Truy cập ADSS theo link : https://adss.pvcb.vn\n2. Chọn nút Quên mật khẩu\n3. Nhập code MFA và đặt lại mật khẩu mới\n\n🔹 Kiểm tra sau thực hiện:\n- Truy cập Microsoft login hoặc exchange online. Nhập mật khẩu mới"
+      },
+      {
+        "role": "user",
+        "text": "lỗi rồi"
+      },
+      {
+        "role": "assistant",
+        "text": "⚠️ Tôi thấy runbook trước có thể chưa giải quyết được vấn đề.\nTôi thử một hướng khác cho bạn (phương án 2/3):\n\n📘 Tiêu đề: reset MFA\n🖥 Dịch vụ: Active Directory\n\n🔹 Điều kiện thực hiện:\n- Tài khoản enabled\n- Tài khoản không bị khóa\n\n🔹 Các bước thực hiện:\n1. Truy cập Entra, tìm tài khoản user\n2. Trong properties chọn Muilti Authenticator\n3. Chọn reset MFA\n\n🔹 Kiểm tra sau thực hiện:\n- (không có)"
+      }
+    ],
+    "semantic_query": "quên mật khẩu",
+    "last_runbook": {
+      "title": "reset MFA",
+      "service": "Active Directory",
+      "source_file": "D:\\Runbook\\RB_Reset MFA.docx"
+    },
+    "tried_runbooks": [
+      "reset password",
+      "reset MFA"
+    ],
+    "last_result_status": "retry_returned",
+    "semantic_cache": [
+      {
+        "semantic_query": "quên mật khẩu",
+        "runbook_title": "reset password",
+        "service": "Active Directory"
+      },
+      {
+        "semantic_query": "quên mật khẩu",
+        "runbook_title": "reset MFA",
+        "service": "Active Directory"
+      }
+    ],
+    "last_action": "search"
+  },
+  "ec79d48f-77c7-48b8-b21c-1dcf6799edc3": {
+    "mode": "idle",
+    "original_query": "",
+    "clarify_turns": 0,
+    "pending_slot": null,
+    "slots": {
+      "issue_type": null,
+      "service": null,
+      "error_message": null
+    },
+    "history": [],
+    "semantic_query": "",
+    "last_runbook": null,
+    "tried_runbooks": [],
+    "last_result_status": null,
+    "semantic_cache": [],
+    "last_action": null
+  },
+  "c5779424-4888-49ae-9fb4-892143f7b36b": {
+    "mode": "idle",
+    "original_query": "",
+    "clarify_turns": 0,
+    "pending_slot": null,
+    "slots": {
+      "issue_type": null,
+      "service": null,
+      "error_message": null
+    },
+    "history": [
+      {
+        "role": "user",
+        "text": "reset password"
+      },
+      {
+        "role": "assistant",
+        "text": "📘 Tiêu đề: reset password\n🖥 Dịch vụ: Active Directory\n\n🔹 Điều kiện thực hiện:\n- Tài khoản enabled\n- Tài khoản không bị khóa\n\n🔹 Các bước thực hiện:\n1. Truy cập ADSS theo link : https://adss.pvcb.vn\n2. Chọn nút Quên mật khẩu\n3. Nhập code MFA và đặt lại mật khẩu mới\n\n🔹 Kiểm tra sau thực hiện:\n- Truy cập Microsoft login hoặc exchange online. Nhập mật khẩu mới"
+      }
+    ],
+    "semantic_query": "reset password",
+    "last_runbook": {
+      "title": "reset password",
+      "service": "Active Directory",
+      "source_file": "D:\\Runbook\\RB_Reset password.docx"
+    },
+    "tried_runbooks": [
+      "reset password"
+    ],
+    "last_result_status": "returned",
+    "semantic_cache": [
+      {
+        "semantic_query": "reset password",
+        "runbook_title": "reset password",
+        "service": "Active Directory"
+      }
+    ],
+    "last_action": "search"
+  },
+  "3cbafc9b-8e99-4845-9724-eb487009ed15": {
+    "mode": "idle",
+    "original_query": "",
+    "clarify_turns": 0,
+    "pending_slot": null,
+    "slots": {
+      "issue_type": null,
+      "service": null,
+      "error_message": null
+    },
+    "history": [
+      {
+        "role": "user",
+        "text": "enable remote mailbox"
+      },
+      {
+        "role": "assistant",
+        "text": "📘 Tiêu đề: enable remote mailbox\n🖥 Dịch vụ: Exchange\n\n🔹 Điều kiện thực hiện:\n- User phải có license 365\n\n🔹 Các bước thực hiện:\n1. Truy cập máy chủ exchange server\n2. Mở powershell thực hiện lệnh disabled mailbox\n3. Mở powershell thực hiện lệnh enable-remotemailbox\n\n🔹 Kiểm tra sau thực hiện:\n- Đăng nhập exchange online"
+      }
+    ],
+    "semantic_query": "enable remote mailbox",
+    "last_runbook": {
+      "title": "enable remote mailbox",
+      "service": "Exchange",
+      "source_file": "D:\\Runbook\\RB_enable remote mailbox.docx"
+    },
+    "tried_runbooks": [
+      "enable remote mailbox"
+    ],
+    "last_result_status": "returned",
+    "semantic_cache": [
+      {
+        "semantic_query": "enable remote mailbox",
+        "runbook_title": "enable remote mailbox",
+        "service": "Exchange"
+      }
+    ],
+    "last_action": "search"
+  },
+  "3aef07e6-2484-4049-a8bf-0548c7c0f499": {
+    "mode": "idle",
+    "original_query": "",
+    "clarify_turns": 0,
+    "pending_slot": null,
+    "slots": {
+      "issue_type": null,
+      "service": null,
+      "error_message": null
+    },
+    "history": [],
+    "semantic_query": "",
+    "last_runbook": null,
+    "tried_runbooks": [],
+    "last_result_status": null,
+    "semantic_cache": [],
+    "last_action": null
+  },
+  "16eefd57-ce26-4328-b902-0edd0eb6a107": {
+    "mode": "idle",
+    "original_query": "",
+    "clarify_turns": 0,
+    "pending_slot": null,
+    "slots": {
+      "issue_type": null,
+      "service": null,
+      "error_message": null
+    },
+    "history": [
+      {
+        "role": "user",
+        "text": "Tôi muốn reset password "
+      },
+      {
+        "role": "assistant",
+        "text": "📘 Tiêu đề: reset password\n🖥 Dịch vụ: Active Directory\n\n🔹 Điều kiện thực hiện:\n- Tài khoản enabled\n- Tài khoản không bị khóa\n\n🔹 Các bước thực hiện:\n1. Truy cập ADSS theo link : https://adss.pvcb.vn\n2. Chọn nút Quên mật khẩu\n3. Nhập code MFA và đặt lại mật khẩu mới\n\n🔹 Kiểm tra sau thực hiện:\n- Truy cập Microsoft login hoặc exchange online. Nhập mật khẩu mới"
+      }
+    ],
+    "semantic_query": "Tôi muốn reset password ",
+    "last_runbook": {
+      "title": "reset password",
+      "service": "Active Directory",
+      "source_file": "D:\\Runbook\\RB_Reset password.docx"
+    },
+    "tried_runbooks": [
+      "reset password"
+    ],
+    "last_result_status": "returned",
+    "semantic_cache": [
+      {
+        "semantic_query": "Tôi muốn reset password ",
+        "runbook_title": "reset password",
+        "service": "Active Directory"
+      }
+    ],
+    "last_action": "search"
+  }
+}

@@ -1,0 +1,388 @@
+import json
+import re
+from app.llm import call_llm
+from app.tool import search_RB
+
+# =====================================================
+# GLOBAL CONVERSATION STATE (single session CLI version)
+# =====================================================
+conversation_state = {
+    "mode": "idle",                 # idle | clarifying
+    "original_query": "",
+    "clarify_turns": 0,
+    "pending_slot": None,           # issue_type | service | error_message
+    "slots": {
+        "issue_type": None,
+        "service": None,
+        "error_message": None
+    },
+    "history": []
+}
+
+MAX_CLARIFY_TURNS = 3
+
+# =====================================================
+# HELPERS
+# =====================================================
+def reset_state():
+    conversation_state["mode"] = "idle"
+    conversation_state["original_query"] = ""
+    conversation_state["clarify_turns"] = 0
+    conversation_state["pending_slot"] = None
+    conversation_state["slots"] = {
+        "issue_type": None,
+        "service": None,
+        "error_message": None
+    }
+    conversation_state["history"] = []
+
+
+def safe_parse_json(text):
+    try:
+        match = re.search(r"\{.*\}", text, re.DOTALL)
+        if match:
+            return json.loads(match.group(0))
+    except Exception as e:
+        print("⚠️ JSON parse error:", e)
+    return None
+
+
+def format_runbook(rb):
+    """
+    Trả raw runbook, giữ nguyên tiếng Việt và các bước.
+    Không dùng LLM rewrite.
+    """
+    if not rb:
+        return "❌ Không tìm thấy runbook phù hợp."
+
+    precheck = "\n- ".join(rb.get("precheck", [])) if rb.get("precheck") else "(không có)"
+    steps = "\n".join(f"{i+1}. {step}" for i, step in enumerate(rb.get("steps", []))) if rb.get("steps") else "(không có)"
+    postcheck = "\n- ".join(rb.get("postcheck", [])) if rb.get("postcheck") else "(không có)"
+
+    return f"""
+📘 Tiêu đề: {rb.get('title', '')}
+🖥 Dịch vụ: {rb.get('service', '')}
+
+🔹 Điều kiện thực hiện:
+- {precheck}
+
+🔹 Các bước thực hiện:
+{steps}
+
+🔹 Kiểm tra sau thực hiện:
+- {postcheck}
+""".strip()
+
+
+def build_query_from_state():
+    """
+    Ghép query từ original query + slot info đã thu thập.
+    Dùng khi đã đủ thông tin để search.
+    """
+    parts = []
+
+    if conversation_state["original_query"]:
+        parts.append(conversation_state["original_query"])
+
+    for key in ["issue_type", "service", "error_message"]:
+        val = conversation_state["slots"].get(key)
+        if val:
+            parts.append(val)
+
+    # remove duplicate while keeping order
+    seen = set()
+    out = []
+    for p in parts:
+        p_norm = p.strip().lower()
+        if p_norm and p_norm not in seen:
+            seen.add(p_norm)
+            out.append(p.strip())
+
+    return " ".join(out)
+
+
+# =====================================================
+# DECISION STEP 1: INITIAL DECISION
+# =====================================================
+def decide_initial(user_query):
+    prompt = f"""
+Bạn là IT agent nội bộ.
+
+NHIỆM VỤ:
+Phân tích câu hỏi đầu tiên của user và chọn 1 trong 2 action:
+
+1. "search_runbook"
+   - khi user mô tả đủ rõ vấn đề, hành động hoặc lỗi cụ thể
+   - ví dụ: "quên mật khẩu", "tạo tài khoản mới", "lỗi account locked"
+
+2. "ask_more"
+   - khi user hỏi mơ hồ, thiếu thông tin, thiếu hệ thống hoặc thiếu lỗi cụ thể
+   - ví dụ: "lỗi rồi", "không vào được", "bị lỗi đăng nhập"
+
+Nếu chọn ask_more:
+- BẮT BUỘC điền:
+  - "message": câu hỏi làm rõ bằng tiếng Việt
+  - "next_slot": 1 trong các giá trị:
+    "issue_type", "service", "error_message"
+
+QUAN TRỌNG:
+- Chỉ trả JSON
+- Không giải thích
+- Không dịch câu hỏi user sang tiếng Anh
+
+FORMAT:
+{{
+  "action": "search_runbook hoặc ask_more",
+  "query": "...",
+  "message": "...",
+  "next_slot": "issue_type | service | error_message | null"
+}}
+
+User query:
+{user_query}
+"""
+
+    result = call_llm(prompt)
+    print("\n🧠 RAW LLM initial decision:", result)
+
+    decision = safe_parse_json(result)
+
+    if decision:
+        print("✅ PARSED initial decision:", decision)
+        return decision
+
+    # fallback: nếu parse fail, cứ search luôn
+    print("⚠️ Parse fail → fallback search")
+    return {
+        "action": "search_runbook",
+        "query": user_query,
+        "message": "",
+        "next_slot": None
+    }
+
+
+# =====================================================
+# DECISION STEP 2: DECIDE WITH STATE
+# =====================================================
+def decide_with_state(user_input):
+    """
+    Khi đang clarifying, dùng state hiện tại + user_input mới
+    để decide xem hỏi tiếp hay search.
+    """
+    slots = conversation_state["slots"]
+    prompt = f"""
+Bạn là IT agent nội bộ.
+
+Đây là trạng thái hội thoại hiện tại:
+
+Original query:
+{conversation_state["original_query"]}
+
+Known slots:
+- issue_type: {slots.get("issue_type")}
+- service: {slots.get("service")}
+- error_message: {slots.get("error_message")}
+
+Pending slot:
+{conversation_state["pending_slot"]}
+
+User reply mới nhất:
+{user_input}
+
+NHIỆM VỤ:
+1. Xác định xem đã đủ thông tin để tìm runbook chưa.
+2. Nếu chưa đủ:
+   - chọn action = "ask_more"
+   - tạo message hỏi tiếp bằng tiếng Việt
+   - điền next_slot còn thiếu nhất
+3. Nếu đã đủ:
+   - chọn action = "search_runbook"
+   - tạo query ngắn gọn, bằng tiếng Việt, kết hợp thông tin đã biết
+   - message để rỗng
+   - next_slot = null
+
+QUAN TRỌNG:
+- Chỉ trả JSON
+- Không giải thích
+- Không dịch sang tiếng Anh
+
+FORMAT:
+{{
+  "action": "search_runbook hoặc ask_more",
+  "query": "...",
+  "message": "...",
+  "next_slot": "issue_type | service | error_message | null"
+}}
+"""
+
+    result = call_llm(prompt)
+    print("\n🧠 RAW LLM state decision:", result)
+
+    decision = safe_parse_json(result)
+
+    if decision:
+        print("✅ PARSED state decision:", decision)
+        return decision
+
+    # fallback nếu parse fail:
+    # nếu đã có ít nhất 2 slot thì search, không thì hỏi tiếp
+    filled_count = sum(1 for v in slots.values() if v)
+    if filled_count >= 2:
+        return {
+            "action": "search_runbook",
+            "query": build_query_from_state(),
+            "message": "",
+            "next_slot": None
+        }
+
+    return {
+        "action": "ask_more",
+        "query": "",
+        "message": "Bạn có thể mô tả rõ hơn lỗi bạn đang gặp hoặc hệ thống bạn đang sử dụng không?",
+        "next_slot": "service"
+    }
+
+
+# =====================================================
+# CLARIFY QUESTION GENERATOR
+# =====================================================
+def generate_clarify_message_fallback(next_slot, user_input):
+    """
+    Nếu LLM trả ask_more nhưng message rỗng,
+    code sẽ fallback bằng message cố định theo slot.
+    """
+    if next_slot == "issue_type":
+        return "Bạn có thể mô tả rõ hơn lỗi hoặc vấn đề bạn đang gặp không?"
+    elif next_slot == "service":
+        return "Bạn đang thao tác trên hệ thống hoặc dịch vụ nào?"
+    elif next_slot == "error_message":
+        return "Bạn có thấy mã lỗi hoặc thông báo lỗi cụ thể nào không?"
+    else:
+        return f"Bạn có thể mô tả rõ hơn về '{user_input}' được không?"
+
+
+# =====================================================
+# SLOT FILLING
+# =====================================================
+def fill_pending_slot_with_user_reply(user_input):
+    """
+    Gán user_input vào slot còn thiếu hiện tại.
+    Version tối giản: pending_slot nào đang đợi thì nhét thẳng vào đó.
+    """
+    pending = conversation_state["pending_slot"]
+    if pending in conversation_state["slots"]:
+        conversation_state["slots"][pending] = user_input.strip()
+
+
+# =====================================================
+# AGENT MAIN RUNTIME
+# =====================================================
+def run_agent(user_input):
+    # lưu lịch sử
+    conversation_state["history"].append({
+        "role": "user",
+        "text": user_input
+    })
+
+    # -------------------------------------------------
+    # CASE 1: đang ở mode clarifying
+    # -------------------------------------------------
+    if conversation_state["mode"] == "clarifying":
+        conversation_state["clarify_turns"] += 1
+
+        # nếu hỏi quá nhiều turn mà vẫn chưa xong
+        if conversation_state["clarify_turns"] > MAX_CLARIFY_TURNS:
+            reset_state()
+            return "❌ Tôi vẫn chưa đủ thông tin để xác định runbook phù hợp. Bạn vui lòng nêu rõ hệ thống và lỗi cụ thể giúp tôi."
+
+        # fill câu trả lời user vào slot đang chờ
+        fill_pending_slot_with_user_reply(user_input)
+
+        decision = decide_with_state(user_input)
+        action = decision.get("action")
+
+        # ----- hỏi tiếp -----
+        if action == "ask_more":
+            next_slot = decision.get("next_slot")
+            msg = decision.get("message")
+
+            if not msg or not msg.strip():
+                msg = generate_clarify_message_fallback(next_slot, user_input)
+
+            conversation_state["pending_slot"] = next_slot
+            conversation_state["mode"] = "clarifying"
+
+            conversation_state["history"].append({
+                "role": "assistant",
+                "text": msg
+            })
+
+            return msg
+
+        # ----- đủ dữ liệu để search -----
+        if action == "search_runbook":
+            final_query = decision.get("query") or build_query_from_state()
+
+            print(f"🔧 Tool call (clarified): search_RB('{final_query}')")
+
+            rb = search_RB(final_query)
+
+            answer = format_runbook(rb)
+
+            # kết thúc phiên clarifying
+            reset_state()
+            return answer
+
+        # fallback
+        msg = "Bạn có thể mô tả rõ hơn hoặc cung cấp hệ thống/lỗi cụ thể không?"
+        conversation_state["history"].append({
+            "role": "assistant",
+            "text": msg
+        })
+        return msg
+
+    # -------------------------------------------------
+    # CASE 2: query mới hoàn toàn
+    # -------------------------------------------------
+    decision = decide_initial(user_input)
+    action = decision.get("action")
+
+    # ----- search ngay -----
+    if action == "search_runbook":
+        tool_query = decision.get("query") or user_input
+
+        print(f"🔧 Tool call: search_RB('{tool_query}')")
+
+        rb = search_RB(tool_query)
+
+        answer = format_runbook(rb)
+
+        # hoàn tất 1-turn
+        reset_state()
+        return answer
+
+    # ----- bắt đầu clarify loop -----
+    if action == "ask_more":
+        msg = decision.get("message")
+        next_slot = decision.get("next_slot")
+
+        if not msg or not msg.strip():
+            msg = generate_clarify_message_fallback(next_slot, user_input)
+
+        conversation_state["mode"] = "clarifying"
+        conversation_state["original_query"] = user_input
+        conversation_state["clarify_turns"] = 1
+        conversation_state["pending_slot"] = next_slot
+
+        conversation_state["history"].append({
+            "role": "assistant",
+            "text": msg
+        })
+
+        return msg
+
+    # ----- fallback unknown -----
+    rb = search_RB(user_input)
+    answer = format_runbook(rb)
+    reset_state()
+    return answer

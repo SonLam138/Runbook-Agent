@@ -1,0 +1,11 @@
+from app.agent import run_agent
+
+if __name__ == "__main__":
+    while True:
+        q = input("\n👤: ").strip()
+
+        if q.lower() in ["exit", "quit"]:
+            break
+
+        ans = run_agent(q)
+        print("\n🤖:", ans)

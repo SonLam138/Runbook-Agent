@@ -1,0 +1,70 @@
+[
+  {
+    "title": "enable remote mailbox",
+    "service": "Exchange",
+    "keyword": "remote mailbox, hòm mail 365",
+    "description": "Người dung có license 365 nhưng mailbox ở on-prem",
+    "intents": [
+      "remote mailbox",
+      "hòm mail 365"
+    ],
+    "precheck": [
+      "User phải có license 365"
+    ],
+    "steps": [
+      "Truy cập máy chủ exchange server",
+      "Mở powershell thực hiện lệnh disabled mailbox",
+      "Mở powershell thực hiện lệnh enable-remotemailbox"
+    ],
+    "postcheck": [
+      "Đăng nhập exchange online"
+    ],
+    "source_file": "D:\\Runbook\\RB_enable remote mailbox.docx"
+  },
+  {
+    "title": "reset password",
+    "service": "Active Directory",
+    "keyword": "Quên mật khẩu, đặt lại mật khẩu",
+    "description": "người dung quên mật khẩu hoặc hết hạn mật khẩu mà không đổi",
+    "intents": [
+      "quên mật khẩu",
+      "đặt lại mật khẩu"
+    ],
+    "precheck": [
+      "Tài khoản enabled",
+      "Tài khoản không bị khóa"
+    ],
+    "steps": [
+      "Truy cập ADSS theo link : https://adss.pvcb.vn",
+      "Chọn nút Quên mật khẩu",
+      "Nhập code MFA và đặt lại mật khẩu mới"
+    ],
+    "postcheck": [
+      "Truy cập Microsoft login hoặc exchange online. Nhập mật khẩu mới"
+    ],
+    "source_file": "D:\\Runbook\\RB_Reset password.docx"
+  },
+  {
+    "title": "Tạo tài khoản mới",
+    "service": "Active Directory",
+    "keyword": "tạo tài khoản, create user",
+    "description": "tạo tài khoản domain mới",
+    "intents": [
+      "tạo tài khoản",
+      "create user",
+      "tạo tài khoản domain mới"
+    ],
+    "precheck": [
+      "Phiếu đề nghị tạo tài khoản"
+    ],
+    "steps": [
+      "Truy cập ADMD",
+      "Chọn menu User Management",
+      "Chọn template P_create_user"
+    ],
+    "postcheck": [
+      "Đăng nhập máy tính bằng tài khoản mới"
+    ],
+    "source_file": "D:\\Runbook\\RB_Tạo tài khoản mới.docx"
+  }
+]

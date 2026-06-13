@@ -1,0 +1,3 @@
+pip install streamlit
+cách chạy:
+streamlit run ui.py
