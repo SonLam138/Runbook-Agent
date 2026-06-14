@@ -1,9 +1,12 @@
 import json
 import re
 
+#from cachetools import cached
+
 from app.llm import call_llm
-from app.tool import search_RB_topk
 from app.session_store import get_session, update_session, reset_session
+from app.tool import tool_retrieve_candidates
+
 
 # =====================================================
 # CONFIG
@@ -40,6 +43,7 @@ NEGATIVE_HINTS = [
 # =====================================================
 # BASIC HELPERS
 # =====================================================
+"""
 def save_feedback(query, runbook):
     FEEDBACK_CACHE[query.lower()] = runbook
 
@@ -49,6 +53,24 @@ def check_cache(query):
         if k in q or q in k:
             return FEEDBACK_CACHE[k]
     return None
+"""
+def normalize_query(q):
+    return q.strip().lower()
+
+
+def save_feedback(query, runbook):
+    FEEDBACK_CACHE[normalize_query(query)] = runbook
+
+
+def check_cache(query):
+    q = normalize_query(query)
+
+    for k, v in FEEDBACK_CACHE.items():
+        if k in q or q in k:
+            return v
+
+    return None
+
 
 def normalize(text):
     if not text:
@@ -518,70 +540,52 @@ CHỈ TRẢ JSON:
 # =====================================================
 def handle_failure_retry(session_id, state, user_input):
     """
-    Khi user nói 'vẫn bị lỗi':
-    - reuse semantic query gần nhất
-    - search runbook khác (exclude tried)
-    - tối đa 3 runbook
+    Retry bằng cách:
+    - reuse semantic query
+    - retrieve candidates (FAISS)
+    - loại RB đã thử
     """
-    if not state.get("last_runbook"):
-        return None
 
     tried = state.get("tried_runbooks", [])
 
-    if len(tried) >= MAX_RETRY_RUNBOOKS:
-        msg = (
-            "❌ Tôi đã thử các runbook gần nhất nhưng vẫn chưa tìm được hướng khác phù hợp.\n"
-            "Bạn có thể cung cấp thêm:\n"
-            "- thông báo lỗi cụ thể\n"
-            "- lỗi xảy ra ở bước nào\n"
-            "- hệ thống bạn đang thao tác"
+    # Guard
+    if not state.get("semantic_query"):
+        return None
+
+    if len(tried) >= 3:
+        return reply(
+            session_id,
+            state,
+            "❌ Tôi đã thử một số hướng nhưng chưa tìm được runbook phù hợp. "
+            "Bạn có thể mô tả chi tiết hơn không?"
         )
-        state["mode"] = "clarifying"
-        state["pending_slot"] = "error_message"
-        state["last_result_status"] = "failed_feedback"
-        state["last_action"] = "ask_more"
-        return reply(session_id, state, msg)
 
-    semantic_query = get_latest_semantic_query(state)
-    if not semantic_query:
-        semantic_query = build_semantic_query(state)
+    semantic_query = state["semantic_query"]
 
-    print(f"🔁 Failure retry using semantic_query: {semantic_query}")
-    print(f"🚫 Exclude runbooks: {tried}")
+    print(f"🔁 RETRY with query: {semantic_query}")
+    print(f"🚫 exclude: {tried}")
 
-    full_candidates = search_RB_topk(
-        query=semantic_query,
-        exclude_titles=tried,
-        topk=3
-    )
+    # ✅ dùng FAISS candidate retrieval
+    full_candidates, _ = tool_retrieve_candidates(semantic_query, state)
 
     if not full_candidates:
-        msg = (
-            "❌ Tôi chưa tìm được runbook thay thế phù hợp.\n"
-            "Bạn có thể cho tôi biết thêm:\n"
-            "- có thông báo lỗi cụ thể nào không?\n"
-            "- bạn đang lỗi ở bước nào?"
+        return reply(
+            session_id,
+            state,
+            "❌ Tôi chưa tìm thấy runbook phù hợp. Bạn có thể mô tả rõ hơn không?"
         )
-        state["mode"] = "clarifying"
-        state["pending_slot"] = "error_message"
-        state["last_result_status"] = "failed_feedback"
-        state["last_action"] = "ask_more"
-        return reply(session_id, state, msg)
 
-    rb = full_candidates[0]
+    rb = full_candidates[0]   # lấy candidate tiếp theo
 
+    # ✅ cập nhật state
     remember_success(state, semantic_query, rb)
     state["last_result_status"] = "retry_returned"
-    state["last_action"] = "search"
-    state["mode"] = "idle"
 
-    prefix = (
-        f"⚠️ Tôi thấy runbook trước có thể chưa giải quyết được vấn đề.\n"
-        f"Tôi thử một hướng khác cho bạn (phương án {len(state['tried_runbooks'])}/{MAX_RETRY_RUNBOOKS}):"
+    return reply(
+        session_id,
+        state,
+        "⚠️ Thử hướng khác:\n\n" + format_runbook(rb)
     )
-
-    answer = format_runbook(rb, prefix=prefix)
-    return reply(session_id, state, answer)
 
 
 def handle_failure_if_needed(session_id, state, user_input):
@@ -653,33 +657,23 @@ def execute_search_from_candidates(session_id, state, user_input, decision, full
 # MAIN AGENT RUNTIME
 # =====================================================
 def run_agent(session_id, user_input):
-    """
-    Flow mới:
-    1. Load state
-    2. Failure detection (hybrid)
-    3. Nếu clarifying → fill slot
-    4. Build effective query
-    5. Candidate retrieval (metadata only)
-    6. LLM decide with candidates
-    7. Execute search or clarify
-    """
-    cached = check_cache(user_input)
-    if cached:
-        return "✅ (cached) Tôi tìm thấy runbook phù hợp:\n\n" + format_runbook(cached)
-
-
-    
     state = get_session(session_id)
     ensure_state_keys(state)
 
     append_history(state, "user", user_input)
+
+    # ===== CACHE HIT =====
+    cached = check_cache(user_input)
+    if cached:
+        print("⚡ CACHE HIT")
+        return reply(session_id, state, format_runbook(cached))
 
     # 1) failure handling
     failure_response = handle_failure_if_needed(session_id, state, user_input)
     if failure_response:
         return failure_response
 
-    # 2) nếu đang clarifying thì fill slot trước
+    # 2) nếu đang clarifying thì fill slot
     if state["mode"] == "clarifying":
         fill_pending_slot(state, user_input)
 
@@ -689,21 +683,22 @@ def run_agent(session_id, user_input):
     else:
         effective_query = user_input
 
-    state["semantic_query"] = effective_query
+    # ✅ FIX: không overwrite semantic_query bừa
+    if state["mode"] == "clarifying" or not state.get("semantic_query"):
+        state["semantic_query"] = effective_query
 
-    # 4) candidate retrieval (metadata only for decision)
-    full_candidates, meta_candidates = retrieve_candidates_meta(effective_query, state)
+    # 4) candidate retrieval
+    full_candidates, meta_candidates = tool_retrieve_candidates(
+        effective_query,
+        state
+    )
 
-    # 5) LLM decide based on candidates
+    # 5) decision
     decision = decide_with_candidates(user_input, state, meta_candidates)
     action = decision.get("action")
 
     # 6) execute
     if action == "search":
-        state["last_action"] = "search"
-        state["mode"] = "idle"
-        state["pending_slot"] = None
-        state["last_result_status"] = "returned"
         return execute_search_from_candidates(
             session_id=session_id,
             state=state,
@@ -721,6 +716,5 @@ def run_agent(session_id, user_input):
             decision=decision
         )
 
-    # fallback
-    msg = "❌ Tôi chưa hiểu rõ yêu cầu. Bạn có thể mô tả cụ thể hơn không?"
-    return reply(session_id, state, msg)
+    return reply(session_id, state,
+        "❌ Tôi chưa hiểu rõ yêu cầu. Bạn có thể mô tả cụ thể hơn không?")

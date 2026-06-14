@@ -204,5 +204,366 @@
       }
     ],
     "last_action": "search"
+  },
+  "998303d1-4d5a-4bae-9313-8ed8e0c389c1": {
+    "mode": "idle",
+    "original_query": "",
+    "clarify_turns": 0,
+    "pending_slot": null,
+    "slots": {
+      "issue_type": null,
+      "service": null,
+      "error_message": null
+    },
+    "history": [
+      {
+        "role": "user",
+        "text": "remote mailbox"
+      },
+      {
+        "role": "assistant",
+        "text": "📘 Tiêu đề: enable remote mailbox\n🖥 Dịch vụ: Exchange\n\n🔹 Điều kiện thực hiện:\n- User phải có license 365\n\n🔹 Các bước thực hiện:\n1. Truy cập máy chủ exchange server\n2. Mở powershell thực hiện lệnh disabled mailbox\n3. Mở powershell thực hiện lệnh enable-remotemailbox\n\n🔹 Kiểm tra sau thực hiện:\n- Đăng nhập exchange online"
+      }
+    ],
+    "semantic_query": "remote mailbox",
+    "last_runbook": {
+      "title": "enable remote mailbox",
+      "service": "Exchange",
+      "source_file": "D:\\Runbook\\RB_enable remote mailbox.docx"
+    },
+    "tried_runbooks": [
+      "enable remote mailbox"
+    ],
+    "last_result_status": "returned",
+    "semantic_cache": [
+      {
+        "semantic_query": "remote mailbox",
+        "runbook_title": "enable remote mailbox",
+        "service": "Exchange"
+      }
+    ],
+    "last_action": "search"
+  },
+  "4ec1e99b-9c41-488b-a563-e6ba7a43caaf": {
+    "mode": "idle",
+    "original_query": "",
+    "clarify_turns": 0,
+    "pending_slot": null,
+    "slots": {
+      "issue_type": null,
+      "service": null,
+      "error_message": null
+    },
+    "history": [
+      {
+        "role": "user",
+        "text": "lỗi login"
+      },
+      {
+        "role": "assistant",
+        "text": "📘 Tiêu đề: reset MFA\n🖥 Dịch vụ: Active Directory\n\n🔹 Điều kiện thực hiện:\n- Tài khoản enabled\n- Tài khoản không bị khóa\n\n🔹 Các bước thực hiện:\n1. Truy cập Entra, tìm tài khoản user\n2. Trong properties chọn Muilti Authenticator\n3. Chọn reset MFA\n\n🔹 Kiểm tra sau thực hiện:\n- (không có)"
+      }
+    ],
+    "semantic_query": "lỗi login",
+    "last_runbook": {
+      "title": "reset MFA",
+      "service": "Active Directory",
+      "source_file": "D:\\Runbook\\RB_Reset MFA.docx"
+    },
+    "tried_runbooks": [
+      "reset MFA"
+    ],
+    "last_result_status": "returned",
+    "semantic_cache": [
+      {
+        "semantic_query": "lỗi login",
+        "runbook_title": "reset MFA",
+        "service": "Active Directory"
+      }
+    ],
+    "last_action": "search"
+  },
+  "9d63780c-3f33-4423-bb54-fc566c890d7c": {
+    "mode": "clarifying",
+    "original_query": "bước nhập mật khẩu",
+    "clarify_turns": 2,
+    "pending_slot": "issue_type",
+    "slots": {
+      "issue_type": "quên mật khẩu",
+      "service": null,
+      "error_message": "bước nhập mật khẩu"
+    },
+    "history": [
+      {
+        "role": "user",
+        "text": "lỗi lòi"
+      },
+      {
+        "role": "assistant",
+        "text": "📘 Tiêu đề: reset MFA\n🖥 Dịch vụ: Active Directory\n\n🔹 Điều kiện thực hiện:\n- Tài khoản enabled\n- Tài khoản không bị khóa\n\n🔹 Các bước thực hiện:\n1. Truy cập Entra, tìm tài khoản user\n2. Trong properties chọn Muilti Authenticator\n3. Chọn reset MFA\n\n🔹 Kiểm tra sau thực hiện:\n- (không có)"
+      },
+      {
+        "role": "user",
+        "text": "vẫn lỗi"
+      },
+      {
+        "role": "assistant",
+        "text": "❌ Tôi chưa tìm được runbook thay thế phù hợp.\nBạn có thể cho tôi biết thêm:\n- có thông báo lỗi cụ thể nào không?\n- bạn đang lỗi ở bước nào?"
+      },
+      {
+        "role": "user",
+        "text": "bước nhập mật khẩu"
+      },
+      {
+        "role": "assistant",
+        "text": "Tôi chưa tìm thấy runbook gần phù hợp. Bạn có thể mô tả rõ hơn không?"
+      },
+      {
+        "role": "user",
+        "text": "quên mật khẩu"
+      },
+      {
+        "role": "assistant",
+        "text": "Tôi chưa tìm thấy runbook gần phù hợp. Bạn có thể mô tả rõ hơn không?"
+      }
+    ],
+    "semantic_query": "lỗi lòi",
+    "last_runbook": {
+      "title": "reset MFA",
+      "service": "Active Directory",
+      "source_file": "D:\\Runbook\\RB_Reset MFA.docx"
+    },
+    "tried_runbooks": [
+      "reset MFA"
+    ],
+    "last_result_status": "failed_feedback",
+    "semantic_cache": [
+      {
+        "semantic_query": "lỗi lòi",
+        "runbook_title": "reset MFA",
+        "service": "Active Directory"
+      }
+    ],
+    "last_action": "ask_more"
+  },
+  "cd48086c-ff4b-43bc-b330-57669926d641": {
+    "mode": "clarifying",
+    "original_query": "tôi quên mật khẩu",
+    "clarify_turns": 1,
+    "pending_slot": "service",
+    "slots": {
+      "issue_type": null,
+      "service": "tôi muốn reset password",
+      "error_message": null
+    },
+    "history": [
+      {
+        "role": "user",
+        "text": "vẫn lỗi"
+      },
+      {
+        "role": "assistant",
+        "text": "⚠️ Thử hướng khác:\n\n📘 Tiêu đề: enable remote mailbox\n🖥 Dịch vụ: Exchange\n\n🔹 Điều kiện thực hiện:\n- User phải có license 365\n\n🔹 Các bước thực hiện:\n1. Truy cập máy chủ exchange server\n2. Mở powershell thực hiện lệnh disabled mailbox\n3. Mở powershell thực hiện lệnh enable-remotemailbox\n\n🔹 Kiểm tra sau thực hiện:\n- Đăng nhập exchange online"
+      },
+      {
+        "role": "user",
+        "text": "vẫn lỗi"
+      },
+      {
+        "role": "assistant",
+        "text": "❌ Tôi đã thử một số hướng nhưng chưa tìm được runbook phù hợp. Bạn có thể mô tả chi tiết hơn không?"
+      },
+      {
+        "role": "user",
+        "text": "tôi quên mật khẩu"
+      },
+      {
+        "role": "assistant",
+        "text": "Bạn có thể sử dụng câu lệnh nào để thay đổi mật khẩu tài khoản trong Active Directory?"
+      },
+      {
+        "role": "user",
+        "text": "tôi muốn reset password"
+      },
+      {
+        "role": "assistant",
+        "text": "📘 Tiêu đề: reset password\n🖥 Dịch vụ: Active Directory\n\n🔹 Điều kiện thực hiện:\n- Tài khoản enabled\n- Tài khoản không bị khóa\n\n🔹 Các bước thực hiện:\n1. Truy cập ADSS theo link : https://adss.pvcb.vn\n2. Chọn nút Quên mật khẩu\n3. Nhập code MFA và đặt lại mật khẩu mới\n\n🔹 Kiểm tra sau thực hiện:\n- Truy cập Microsoft login hoặc exchange online. Nhập mật khẩu mới"
+      }
+    ],
+    "semantic_query": "đăng nhập mail lỗi",
+    "last_runbook": {
+      "title": "reset password",
+      "service": "Active Directory",
+      "source_file": "D:\\Runbook\\RB_Reset password.docx"
+    },
+    "tried_runbooks": [
+      "reset MFA",
+      "Tạo tài khoản mới",
+      "enable remote mailbox",
+      "reset password"
+    ],
+    "last_result_status": "returned",
+    "semantic_cache": [
+      {
+        "semantic_query": "đăng nhập mail lỗi",
+        "runbook_title": "reset MFA",
+        "service": "Active Directory"
+      },
+      {
+        "semantic_query": "đăng nhập mail lỗi",
+        "runbook_title": "Tạo tài khoản mới",
+        "service": "Active Directory"
+      },
+      {
+        "semantic_query": "đăng nhập mail lỗi",
+        "runbook_title": "enable remote mailbox",
+        "service": "Exchange"
+      },
+      {
+        "semantic_query": "đăng nhập mail lỗi",
+        "runbook_title": "reset password",
+        "service": "Active Directory"
+      }
+    ],
+    "last_action": "search"
+  },
+  "c7cce87b-f9f3-4008-8e00-95cfec5079a5": {
+    "mode": "idle",
+    "original_query": "",
+    "clarify_turns": 0,
+    "pending_slot": null,
+    "slots": {
+      "issue_type": null,
+      "service": null,
+      "error_message": null
+    },
+    "history": [
+      {
+        "role": "user",
+        "text": "lỗi lòi"
+      },
+      {
+        "role": "assistant",
+        "text": "📘 Tiêu đề: reset MFA\n🖥 Dịch vụ: Active Directory\n\n🔹 Điều kiện thực hiện:\n- Tài khoản enabled\n- Tài khoản không bị khóa\n\n🔹 Các bước thực hiện:\n1. Truy cập Entra, tìm tài khoản user\n2. Trong properties chọn Muilti Authenticator\n3. Chọn reset MFA\n\n🔹 Kiểm tra sau thực hiện:\n- (không có)"
+      },
+      {
+        "role": "user",
+        "text": "vẫn lỗi"
+      },
+      {
+        "role": "assistant",
+        "text": "❌ Tôi chưa tìm thấy runbook phù hợp. Bạn có thể mô tả rõ hơn không?"
+      }
+    ],
+    "semantic_query": "lỗi lòi",
+    "last_runbook": {
+      "title": "reset MFA",
+      "service": "Active Directory",
+      "source_file": "D:\\Runbook\\RB_Reset MFA.docx"
+    },
+    "tried_runbooks": [
+      "reset MFA"
+    ],
+    "last_result_status": "returned",
+    "semantic_cache": [
+      {
+        "semantic_query": "lỗi lòi",
+        "runbook_title": "reset MFA",
+        "service": "Active Directory"
+      }
+    ],
+    "last_action": "search"
+  },
+  "79a6e228-1d23-4452-ae88-fed7f0d163eb": {
+    "mode": "idle",
+    "original_query": "",
+    "clarify_turns": 0,
+    "pending_slot": null,
+    "slots": {
+      "issue_type": null,
+      "service": null,
+      "error_message": null
+    },
+    "history": [
+      {
+        "role": "user",
+        "text": "lỗi rồi"
+      },
+      {
+        "role": "assistant",
+        "text": "📘 Tiêu đề: reset MFA\n🖥 Dịch vụ: Active Directory\n\n🔹 Điều kiện thực hiện:\n- Tài khoản enabled\n- Tài khoản không bị khóa\n\n🔹 Các bước thực hiện:\n1. Truy cập Entra, tìm tài khoản user\n2. Trong properties chọn Muilti Authenticator\n3. Chọn reset MFA\n\n🔹 Kiểm tra sau thực hiện:\n- (không có)"
+      }
+    ],
+    "semantic_query": "lỗi rồi",
+    "last_runbook": {
+      "title": "reset MFA",
+      "service": "Active Directory",
+      "source_file": "D:\\Runbook\\RB_Reset MFA.docx"
+    },
+    "tried_runbooks": [
+      "reset MFA"
+    ],
+    "last_result_status": "returned",
+    "semantic_cache": [
+      {
+        "semantic_query": "lỗi rồi",
+        "runbook_title": "reset MFA",
+        "service": "Active Directory"
+      }
+    ],
+    "last_action": "search"
+  },
+  "ec20466b-153d-4aff-95ea-9d501c2dd2c5": {
+    "mode": "idle",
+    "original_query": "",
+    "clarify_turns": 0,
+    "pending_slot": null,
+    "slots": {
+      "issue_type": null,
+      "service": null,
+      "error_message": null
+    },
+    "history": [
+      {
+        "role": "user",
+        "text": "lỗi rồi"
+      },
+      {
+        "role": "assistant",
+        "text": "📘 Tiêu đề: reset MFA\n🖥 Dịch vụ: Active Directory\n\n🔹 Điều kiện thực hiện:\n- Tài khoản enabled\n- Tài khoản không bị khóa\n\n🔹 Các bước thực hiện:\n1. Truy cập Entra, tìm tài khoản user\n2. Trong properties chọn Muilti Authenticator\n3. Chọn reset MFA\n\n🔹 Kiểm tra sau thực hiện:\n- (không có)"
+      },
+      {
+        "role": "user",
+        "text": "vẫn lỗi"
+      },
+      {
+        "role": "assistant",
+        "text": "⚠️ Thử hướng khác:\n\n📘 Tiêu đề: reset password\n🖥 Dịch vụ: Active Directory\n\n🔹 Điều kiện thực hiện:\n- Tài khoản enabled\n- Tài khoản không bị khóa\n\n🔹 Các bước thực hiện:\n1. Truy cập ADSS theo link : https://adss.pvcb.vn\n2. Chọn nút Quên mật khẩu\n3. Nhập code MFA và đặt lại mật khẩu mới\n\n🔹 Kiểm tra sau thực hiện:\n- Truy cập Microsoft login hoặc exchange online. Nhập mật khẩu mới"
+      }
+    ],
+    "semantic_query": "lỗi rồi",
+    "last_runbook": {
+      "title": "reset password",
+      "service": "Active Directory",
+      "source_file": "D:\\Runbook\\RB_Reset password.docx"
+    },
+    "tried_runbooks": [
+      "reset MFA",
+      "reset password"
+    ],
+    "last_result_status": "retry_returned",
+    "semantic_cache": [
+      {
+        "semantic_query": "lỗi rồi",
+        "runbook_title": "reset MFA",
+        "service": "Active Directory"
+      },
+      {
+        "semantic_query": "lỗi rồi",
+        "runbook_title": "reset password",
+        "service": "Active Directory"
+      }
+    ],
+    "last_action": "search"
   }
 }

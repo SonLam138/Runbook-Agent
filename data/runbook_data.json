@@ -22,13 +22,38 @@
     "source_file": "D:\\Runbook\\RB_enable remote mailbox.docx"
   },
   {
+    "title": "reset MFA",
+    "service": "Active Directory",
+    "keyword": "Lỗi MFA, reset MFA",
+    "description": "Người dùng bị lỗi đăng nhập, đã qua bước nhập mật khẩu nhưng không gửi thông báo MFA qua điện thoại",
+    "intents": [
+      "Lỗi MFA",
+      "reset MFA",
+      "người dùng bị lỗi đăng nhập"
+    ],
+    "precheck": [
+      "Tài khoản enabled",
+      "Tài khoản không bị khóa"
+    ],
+    "steps": [
+      "Truy cập Entra, tìm tài khoản user",
+      "Trong properties chọn Muilti Authenticator",
+      "Chọn reset MFA"
+    ],
+    "postcheck": [],
+    "source_file": "D:\\Runbook\\RB_Reset MFA.docx"
+  },
+  {
     "title": "reset password",
     "service": "Active Directory",
     "keyword": "Quên mật khẩu, đặt lại mật khẩu",
     "description": "người dung quên mật khẩu hoặc hết hạn mật khẩu mà không đổi",
     "intents": [
-      "quên mật khẩu",
-      "đặt lại mật khẩu"
+      "Quên mật khẩu",
+      "đặt lại mật khẩu",
+      "người dung quên mật khẩu",
+      "hết hạn mật khẩu mà không đổi",
+      "mật khẩu hết hạn"
     ],
     "precheck": [
       "Tài khoản enabled",
