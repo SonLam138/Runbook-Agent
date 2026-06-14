@@ -565,5 +565,823 @@
       }
     ],
     "last_action": "search"
+  },
+  "0dadb038-74e3-4ff7-9596-f652b6c51766": {
+    "mode": "idle",
+    "original_query": "",
+    "clarify_turns": 0,
+    "pending_slot": null,
+    "slots": {
+      "issue_type": null,
+      "service": null,
+      "error_message": null
+    },
+    "history": [
+      {
+        "role": "user",
+        "text": "lỗi rồi"
+      },
+      {
+        "role": "assistant",
+        "text": "Bạn có thể mô tả rõ hơn vấn đề không?"
+      },
+      {
+        "role": "user",
+        "text": "lỗi rồi"
+      },
+      {
+        "role": "assistant",
+        "text": "Bạn có thể mô tả rõ hơn vấn đề không?"
+      },
+      {
+        "role": "user",
+        "text": "lỗi đăng nhập "
+      },
+      {
+        "role": "assistant",
+        "text": "Bạn có thể mô tả rõ hơn vấn đề không?"
+      },
+      {
+        "role": "user",
+        "text": "đăng nhập báo sai mật khẩu"
+      },
+      {
+        "role": "assistant",
+        "text": "Bạn có thể mô tả rõ hơn vấn đề không?"
+      },
+      {
+        "role": "user",
+        "text": "quên mật khẩu"
+      },
+      {
+        "role": "assistant",
+        "text": "Bạn có thể mô tả rõ hơn vấn đề không?"
+      },
+      {
+        "role": "user",
+        "text": "reset password"
+      },
+      {
+        "role": "assistant",
+        "text": "Bạn có thể mô tả rõ hơn vấn đề không?"
+      }
+    ],
+    "semantic_query": "",
+    "last_runbook": null,
+    "tried_runbooks": [],
+    "last_result_status": null,
+    "semantic_cache": [],
+    "last_action": null
+  },
+  "0dbfe178-83fe-42f8-9da9-4ccfcc37423c": {
+    "mode": "idle",
+    "original_query": "",
+    "clarify_turns": 0,
+    "pending_slot": null,
+    "slots": {
+      "issue_type": null,
+      "service": null,
+      "error_message": null
+    },
+    "history": [
+      {
+        "role": "user",
+        "text": "reset password"
+      },
+      {
+        "role": "assistant",
+        "text": "Bạn có thể mô tả rõ hơn vấn đề không?"
+      }
+    ],
+    "semantic_query": "",
+    "last_runbook": null,
+    "tried_runbooks": [],
+    "last_result_status": null,
+    "semantic_cache": [],
+    "last_action": null
+  },
+  "807f15b1-2b10-4d3f-81d6-fef2db723b42": {
+    "mode": "idle",
+    "original_query": "",
+    "clarify_turns": 0,
+    "pending_slot": null,
+    "slots": {
+      "issue_type": null,
+      "service": null,
+      "error_message": null
+    },
+    "history": [
+      {
+        "role": "user",
+        "text": "quên mật khẩu"
+      },
+      {
+        "role": "assistant",
+        "text": "Bạn có thể mô tả rõ hơn vấn đề không?"
+      }
+    ],
+    "semantic_query": "",
+    "last_runbook": null,
+    "tried_runbooks": [],
+    "last_result_status": null,
+    "semantic_cache": [],
+    "last_action": null
+  },
+  "a2f443f2-c306-49c3-83d7-31a9e809d59e": {
+    "mode": "idle",
+    "original_query": "",
+    "clarify_turns": 0,
+    "pending_slot": null,
+    "slots": {
+      "issue_type": null,
+      "service": null,
+      "error_message": null
+    },
+    "history": [
+      {
+        "role": "user",
+        "text": "quên mật khẩu"
+      },
+      {
+        "role": "assistant",
+        "text": "Bạn có thể mô tả rõ hơn vấn đề không?"
+      }
+    ],
+    "semantic_query": "",
+    "last_runbook": null,
+    "tried_runbooks": [],
+    "last_result_status": null,
+    "semantic_cache": [],
+    "last_action": null
+  },
+  "83d6b6e6-92fc-4594-9d14-a655edd365ba": {
+    "mode": "idle",
+    "original_query": "",
+    "clarify_turns": 0,
+    "pending_slot": null,
+    "slots": {
+      "issue_type": null,
+      "service": null,
+      "error_message": null
+    },
+    "history": [
+      {
+        "role": "user",
+        "text": "reset password"
+      },
+      {
+        "role": "assistant",
+        "text": "Bạn có thể mô tả rõ hơn vấn đề không?"
+      },
+      {
+        "role": "user",
+        "text": "remote mailbox"
+      },
+      {
+        "role": "assistant",
+        "text": "Bạn có thể mô tả rõ hơn vấn đề không?"
+      }
+    ],
+    "semantic_query": "",
+    "last_runbook": null,
+    "tried_runbooks": [],
+    "last_result_status": null,
+    "semantic_cache": [],
+    "last_action": null
+  },
+  "311fc746-7ffc-4797-85ab-623a982f2e5b": {
+    "mode": "idle",
+    "original_query": "",
+    "clarify_turns": 0,
+    "pending_slot": null,
+    "slots": {
+      "issue_type": null,
+      "service": null,
+      "error_message": null
+    },
+    "history": [
+      {
+        "role": "user",
+        "text": "remote mailbox"
+      },
+      {
+        "role": "assistant",
+        "text": "📘 enable remote mailbox\n🖥 Exchange\n\n1. Truy cập máy chủ exchange server\n2. Mở powershell thực hiện lệnh disabled mailbox\n3. Mở powershell thực hiện lệnh enable-remotemailbox"
+      },
+      {
+        "role": "user",
+        "text": "reset password"
+      },
+      {
+        "role": "assistant",
+        "text": "Bạn có thể mô tả rõ hơn vấn đề không?"
+      },
+      {
+        "role": "user",
+        "text": "reset password"
+      },
+      {
+        "role": "assistant",
+        "text": "Bạn có thể mô tả rõ hơn vấn đề không?"
+      },
+      {
+        "role": "user",
+        "text": "quên mật khẩu"
+      },
+      {
+        "role": "assistant",
+        "text": "📘 reset password\n🖥 Active Directory\n\n1. Truy cập ADSS theo link : https://adss.pvcb.vn\n2. Chọn nút Quên mật khẩu\n3. Nhập code MFA và đặt lại mật khẩu mới"
+      },
+      {
+        "role": "user",
+        "text": "vẫn lỗi"
+      },
+      {
+        "role": "assistant",
+        "text": "⚠️ Thử phương án khác:\n\n📘 reset MFA\n🖥 Active Directory\n\n1. Truy cập Entra, tìm tài khoản user\n2. Trong properties chọn Muilti Authenticator\n3. Chọn reset MFA"
+      }
+    ],
+    "semantic_query": "quên mật khẩu",
+    "last_runbook": {
+      "title": "reset MFA",
+      "service": "Active Directory",
+      "keyword": "Lỗi MFA, reset MFA",
+      "description": "Người dùng bị lỗi đăng nhập, đã qua bước nhập mật khẩu nhưng không gửi thông báo MFA qua điện thoại",
+      "precheck": [
+        "Tài khoản enabled",
+        "Tài khoản không bị khóa"
+      ],
+      "steps": [
+        "Truy cập Entra, tìm tài khoản user",
+        "Trong properties chọn Muilti Authenticator",
+        "Chọn reset MFA"
+      ],
+      "postcheck": [],
+      "source_file": "D:\\Runbook\\RB_Reset MFA.docx",
+      "score": 0.5935618281364441
+    },
+    "tried_runbooks": [
+      "enable remote mailbox",
+      "reset password",
+      "reset MFA"
+    ],
+    "last_result_status": null,
+    "semantic_cache": [],
+    "last_action": null
+  },
+  "27c5c414-0ee6-44bd-b920-d84ba808a23d": {
+    "mode": "idle",
+    "original_query": "",
+    "clarify_turns": 0,
+    "pending_slot": null,
+    "slots": {
+      "issue_type": null,
+      "service": null,
+      "error_message": null
+    },
+    "history": [
+      {
+        "role": "user",
+        "text": "remote mailbox"
+      },
+      {
+        "role": "assistant",
+        "text": "📘 Tiêu đề: enable remote mailbox\n🖥 Dịch vụ: Exchange\n\n🔹 Điều kiện thực hiện:\n- User phải có license 365\n\n🔹 Các bước thực hiện:\n1. Truy cập máy chủ exchange server\n2. Mở powershell thực hiện lệnh disabled mailbox\n3. Mở powershell thực hiện lệnh enable-remotemailbox\n\n🔹 Kiểm tra sau thực hiện:\n- Đăng nhập exchange online"
+      }
+    ],
+    "semantic_query": "remote mailbox",
+    "last_runbook": {
+      "title": "enable remote mailbox",
+      "service": "Exchange",
+      "keyword": "remote mailbox, hòm mail 365",
+      "description": "Người dung có license 365 nhưng mailbox ở on-prem",
+      "precheck": [
+        "User phải có license 365"
+      ],
+      "steps": [
+        "Truy cập máy chủ exchange server",
+        "Mở powershell thực hiện lệnh disabled mailbox",
+        "Mở powershell thực hiện lệnh enable-remotemailbox"
+      ],
+      "postcheck": [
+        "Đăng nhập exchange online"
+      ],
+      "source_file": "D:\\Runbook\\RB_enable remote mailbox.docx",
+      "score": 0.6856213808059692
+    },
+    "tried_runbooks": [
+      "enable remote mailbox"
+    ],
+    "last_result_status": null,
+    "semantic_cache": [],
+    "last_action": null
+  },
+  "3a2a40b5-7963-4907-ac50-309a3d5bc957": {
+    "mode": "idle",
+    "original_query": "",
+    "clarify_turns": 0,
+    "pending_slot": null,
+    "slots": {
+      "issue_type": null,
+      "service": null,
+      "error_message": null
+    },
+    "history": [
+      {
+        "role": "user",
+        "text": "quên  mật khẩu"
+      },
+      {
+        "role": "assistant",
+        "text": "📘 Tiêu đề: reset password\n🖥 Dịch vụ: Active Directory\n\n🔹 Điều kiện thực hiện:\n- Tài khoản enabled\n- Tài khoản không bị khóa\n\n🔹 Các bước thực hiện:\n1. Truy cập ADSS theo link : https://adss.pvcb.vn\n2. Chọn nút Quên mật khẩu\n3. Nhập code MFA và đặt lại mật khẩu mới\n\n🔹 Kiểm tra sau thực hiện:\n- Truy cập Microsoft login hoặc exchange online. Nhập mật khẩu mới"
+      },
+      {
+        "role": "user",
+        "text": "reset password"
+      },
+      {
+        "role": "assistant",
+        "text": "Bạn có thể mô tả rõ hơn vấn đề không?"
+      }
+    ],
+    "semantic_query": "quên  mật khẩu",
+    "last_runbook": {
+      "title": "reset password",
+      "service": "Active Directory",
+      "keyword": "Quên mật khẩu, đặt lại mật khẩu",
+      "description": "người dung quên mật khẩu hoặc hết hạn mật khẩu mà không đổi",
+      "precheck": [
+        "Tài khoản enabled",
+        "Tài khoản không bị khóa"
+      ],
+      "steps": [
+        "Truy cập ADSS theo link : https://adss.pvcb.vn",
+        "Chọn nút Quên mật khẩu",
+        "Nhập code MFA và đặt lại mật khẩu mới"
+      ],
+      "postcheck": [
+        "Truy cập Microsoft login hoặc exchange online. Nhập mật khẩu mới"
+      ],
+      "source_file": "D:\\Runbook\\RB_Reset password.docx",
+      "score": 0.6640607118606567
+    },
+    "tried_runbooks": [
+      "reset password"
+    ],
+    "last_result_status": null,
+    "semantic_cache": [],
+    "last_action": null
+  },
+  "188175f5-4937-49b4-9b85-7093aa7152c5": {
+    "mode": "idle",
+    "original_query": "",
+    "clarify_turns": 0,
+    "pending_slot": null,
+    "slots": {
+      "issue_type": null,
+      "service": null,
+      "error_message": null
+    },
+    "history": [
+      {
+        "role": "user",
+        "text": "reset password"
+      },
+      {
+        "role": "assistant",
+        "text": "Bạn có thể mô tả rõ hơn vấn đề không?"
+      },
+      {
+        "role": "user",
+        "text": "quên mật khẩu"
+      },
+      {
+        "role": "assistant",
+        "text": "📘 Tiêu đề: reset password\n🖥 Dịch vụ: Active Directory\n\n🔹 Điều kiện thực hiện:\n- Tài khoản enabled\n- Tài khoản không bị khóa\n\n🔹 Các bước thực hiện:\n1. Truy cập ADSS theo link : https://adss.pvcb.vn\n2. Chọn nút Quên mật khẩu\n3. Nhập code MFA và đặt lại mật khẩu mới\n\n🔹 Kiểm tra sau thực hiện:\n- Truy cập Microsoft login hoặc exchange online. Nhập mật khẩu mới"
+      }
+    ],
+    "semantic_query": "quên mật khẩu",
+    "last_runbook": {
+      "title": "reset password",
+      "service": "Active Directory",
+      "keyword": "Quên mật khẩu, đặt lại mật khẩu",
+      "description": "người dung quên mật khẩu hoặc hết hạn mật khẩu mà không đổi",
+      "precheck": [
+        "Tài khoản enabled",
+        "Tài khoản không bị khóa"
+      ],
+      "steps": [
+        "Truy cập ADSS theo link : https://adss.pvcb.vn",
+        "Chọn nút Quên mật khẩu",
+        "Nhập code MFA và đặt lại mật khẩu mới"
+      ],
+      "postcheck": [
+        "Truy cập Microsoft login hoặc exchange online. Nhập mật khẩu mới"
+      ],
+      "source_file": "D:\\Runbook\\RB_Reset password.docx",
+      "score": 0.6640607118606567
+    },
+    "tried_runbooks": [
+      "reset password"
+    ],
+    "last_result_status": null,
+    "semantic_cache": [],
+    "last_action": null
+  },
+  "85395e73-6450-46bd-b123-ea33d7dfad23": {
+    "mode": "idle",
+    "original_query": "",
+    "clarify_turns": 0,
+    "pending_slot": null,
+    "slots": {
+      "issue_type": null,
+      "service": null,
+      "error_message": null
+    },
+    "history": [
+      {
+        "role": "user",
+        "text": "lỗi rồi"
+      },
+      {
+        "role": "assistant",
+        "text": "📘 Tiêu đề: reset MFA\n🖥 Dịch vụ: Active Directory\n\n🔹 Điều kiện thực hiện:\n- Tài khoản enabled\n- Tài khoản không bị khóa\n\n🔹 Các bước thực hiện:\n1. Truy cập Entra, tìm tài khoản user\n2. Trong properties chọn Muilti Authenticator\n3. Chọn reset MFA\n\n🔹 Kiểm tra sau thực hiện:\n- (không có)"
+      },
+      {
+        "role": "user",
+        "text": "vẫn lỗi"
+      },
+      {
+        "role": "assistant",
+        "text": "⚠️ Thử phương án khác:\n\n📘 Tiêu đề: reset password\n🖥 Dịch vụ: Active Directory\n\n🔹 Điều kiện thực hiện:\n- Tài khoản enabled\n- Tài khoản không bị khóa\n\n🔹 Các bước thực hiện:\n1. Truy cập ADSS theo link : https://adss.pvcb.vn\n2. Chọn nút Quên mật khẩu\n3. Nhập code MFA và đặt lại mật khẩu mới\n\n🔹 Kiểm tra sau thực hiện:\n- Truy cập Microsoft login hoặc exchange online. Nhập mật khẩu mới"
+      }
+    ],
+    "semantic_query": "lỗi rồi",
+    "last_runbook": {
+      "title": "reset password",
+      "service": "Active Directory",
+      "keyword": "Quên mật khẩu, đặt lại mật khẩu",
+      "description": "người dung quên mật khẩu hoặc hết hạn mật khẩu mà không đổi",
+      "precheck": [
+        "Tài khoản enabled",
+        "Tài khoản không bị khóa"
+      ],
+      "steps": [
+        "Truy cập ADSS theo link : https://adss.pvcb.vn",
+        "Chọn nút Quên mật khẩu",
+        "Nhập code MFA và đặt lại mật khẩu mới"
+      ],
+      "postcheck": [
+        "Truy cập Microsoft login hoặc exchange online. Nhập mật khẩu mới"
+      ],
+      "source_file": "D:\\Runbook\\RB_Reset password.docx",
+      "score": 0.503652811050415
+    },
+    "tried_runbooks": [
+      "reset MFA",
+      "reset password"
+    ],
+    "last_result_status": "retry_returned",
+    "semantic_cache": [
+      {
+        "semantic_query": "lỗi rồi",
+        "runbook_title": "reset MFA",
+        "service": "Active Directory"
+      },
+      {
+        "semantic_query": "lỗi rồi",
+        "runbook_title": "reset password",
+        "service": "Active Directory"
+      }
+    ],
+    "last_action": "search"
+  },
+  "7b656786-e470-40c8-824d-b51e49dc4246": {
+    "mode": "idle",
+    "original_query": "",
+    "clarify_turns": 0,
+    "pending_slot": null,
+    "slots": {
+      "issue_type": null,
+      "service": null,
+      "error_message": null
+    },
+    "history": [
+      {
+        "role": "user",
+        "text": "tôi muốn hỏi thông tin"
+      },
+      {
+        "role": "assistant",
+        "text": "📘 Tiêu đề: reset password\n🖥 Dịch vụ: Active Directory\n\n🔹 Điều kiện thực hiện:\n- Tài khoản enabled\n- Tài khoản không bị khóa\n\n🔹 Các bước thực hiện:\n1. Truy cập ADSS theo link : https://adss.pvcb.vn\n2. Chọn nút Quên mật khẩu\n3. Nhập code MFA và đặt lại mật khẩu mới\n\n🔹 Kiểm tra sau thực hiện:\n- Truy cập Microsoft login hoặc exchange online. Nhập mật khẩu mới"
+      }
+    ],
+    "semantic_query": "tôi muốn hỏi thông tin",
+    "last_runbook": {
+      "title": "reset password",
+      "service": "Active Directory",
+      "keyword": "Quên mật khẩu, đặt lại mật khẩu",
+      "description": "người dung quên mật khẩu hoặc hết hạn mật khẩu mà không đổi",
+      "precheck": [
+        "Tài khoản enabled",
+        "Tài khoản không bị khóa"
+      ],
+      "steps": [
+        "Truy cập ADSS theo link : https://adss.pvcb.vn",
+        "Chọn nút Quên mật khẩu",
+        "Nhập code MFA và đặt lại mật khẩu mới"
+      ],
+      "postcheck": [
+        "Truy cập Microsoft login hoặc exchange online. Nhập mật khẩu mới"
+      ],
+      "source_file": "D:\\Runbook\\RB_Reset password.docx",
+      "score": 0.5006124377250671
+    },
+    "tried_runbooks": [
+      "reset password"
+    ],
+    "last_result_status": "returned",
+    "semantic_cache": [
+      {
+        "semantic_query": "tôi muốn hỏi thông tin",
+        "runbook_title": "reset password",
+        "service": "Active Directory"
+      }
+    ],
+    "last_action": "search"
+  },
+  "caf3c8e4-5ad0-4ce5-87c9-b984b89f3d2d": {
+    "mode": "clarifying",
+    "original_query": "tôi muốn hỏi thông tin",
+    "clarify_turns": 1,
+    "pending_slot": "issue_type",
+    "slots": {
+      "issue_type": "tôi không đăng nhập được máy tính",
+      "service": null,
+      "error_message": null
+    },
+    "history": [
+      {
+        "role": "user",
+        "text": "tôi muốn hỏi thông tin"
+      },
+      {
+        "role": "assistant",
+        "text": "Bạn có thể mô tả rõ hơn vấn đề bạn đang gặp không?"
+      },
+      {
+        "role": "user",
+        "text": "tôi không đăng nhập được máy tính"
+      },
+      {
+        "role": "assistant",
+        "text": "Bạn có thể mô tả rõ hơn vấn đề bạn đang gặp không?"
+      }
+    ],
+    "semantic_query": "Runbook phù hợp: Đăng nhập máy tính (Không thể đăng nhập)",
+    "last_runbook": null,
+    "tried_runbooks": [],
+    "last_result_status": null,
+    "semantic_cache": [],
+    "last_action": null
+  },
+  "48db4c7b-a4f1-4b55-8909-8e768dca4095": {
+    "mode": "idle",
+    "original_query": "",
+    "clarify_turns": 0,
+    "pending_slot": null,
+    "slots": {
+      "issue_type": null,
+      "service": null,
+      "error_message": null
+    },
+    "history": [],
+    "semantic_query": "",
+    "last_runbook": null,
+    "tried_runbooks": [],
+    "last_result_status": null,
+    "semantic_cache": [],
+    "last_action": null
+  },
+  "d0bb4adf-2739-4b56-b661-5a193b0d8303": {
+    "mode": "clarifying",
+    "original_query": "tôi muốn hỏi thông tin",
+    "clarify_turns": 0,
+    "pending_slot": "issue_type",
+    "slots": {
+      "issue_type": null,
+      "service": null,
+      "error_message": null
+    },
+    "history": [
+      {
+        "role": "user",
+        "text": "tôi muốn hỏi thông tin"
+      },
+      {
+        "role": "assistant",
+        "text": "Bạn có thể mô tả rõ hơn vấn đề bạn đang gặp không?"
+      }
+    ],
+    "semantic_query": "tôi muốn hỏi thông tin",
+    "last_runbook": null,
+    "tried_runbooks": [],
+    "last_result_status": null,
+    "semantic_cache": [],
+    "last_action": null
+  },
+  "861cbe89-b73f-47b7-9e17-69bcdd412d8c": {
+    "mode": "clarifying",
+    "original_query": "tôi muốn hỏi lỗi đang gặp",
+    "clarify_turns": 0,
+    "pending_slot": "issue_type",
+    "slots": {
+      "issue_type": null,
+      "service": null,
+      "error_message": null
+    },
+    "history": [
+      {
+        "role": "user",
+        "text": "tôi muốn hỏi lỗi đang gặp"
+      },
+      {
+        "role": "assistant",
+        "text": "Bạn có thể mô tả rõ hơn vấn đề bạn đang gặp không?"
+      }
+    ],
+    "semantic_query": "tôi muốn hỏi lỗi đang gặp",
+    "last_runbook": null,
+    "tried_runbooks": [],
+    "last_result_status": null,
+    "semantic_cache": [],
+    "last_action": null
+  },
+  "350650c8-34e5-4ac0-a938-313e63583619": {
+    "mode": "idle",
+    "original_query": "tôi bị lỗi đăng nhập",
+    "clarify_turns": 1,
+    "pending_slot": null,
+    "slots": {
+      "issue_type": "quên mật khẩu",
+      "service": null,
+      "error_message": null
+    },
+    "history": [
+      {
+        "role": "user",
+        "text": "tôi bị lỗi đăng nhập"
+      },
+      {
+        "role": "assistant",
+        "text": "Bạn có thể mô tả rõ hơn vấn đề bạn đang gặp không?"
+      },
+      {
+        "role": "user",
+        "text": "quên mật khẩu"
+      },
+      {
+        "role": "assistant",
+        "text": "📘 Tiêu đề: reset password\n🖥 Dịch vụ: Active Directory\n\n🔹 Điều kiện thực hiện:\n- Tài khoản enabled\n- Tài khoản không bị khóa\n\n🔹 Các bước thực hiện:\n1. Truy cập ADSS theo link : https://adss.pvcb.vn\n2. Chọn nút Quên mật khẩu\n3. Nhập code MFA và đặt lại mật khẩu mới\n\n🔹 Kiểm tra sau thực hiện:\n- Truy cập Microsoft login hoặc exchange online. Nhập mật khẩu mới"
+      }
+    ],
+    "semantic_query": "Runbook truyền thống cho quên mật khẩu: Điều khiển lỗi nhập mật khẩu của người dùng, gửi yêu cầu khôi phục mật khẩu qua hệ thống.\n\nQuery: Lấy runbook điều khiển lỗi nhập mật khẩu cho trường hợp quên mật khẩu của người dùng.",
+    "last_runbook": {
+      "title": "reset password",
+      "service": "Active Directory",
+      "keyword": "Quên mật khẩu, đặt lại mật khẩu",
+      "description": "người dung quên mật khẩu hoặc hết hạn mật khẩu mà không đổi",
+      "precheck": [
+        "Tài khoản enabled",
+        "Tài khoản không bị khóa"
+      ],
+      "steps": [
+        "Truy cập ADSS theo link : https://adss.pvcb.vn",
+        "Chọn nút Quên mật khẩu",
+        "Nhập code MFA và đặt lại mật khẩu mới"
+      ],
+      "postcheck": [
+        "Truy cập Microsoft login hoặc exchange online. Nhập mật khẩu mới"
+      ],
+      "source_file": "D:\\Runbook\\RB_Reset password.docx",
+      "score": 0.7787330150604248
+    },
+    "tried_runbooks": [
+      "reset password"
+    ],
+    "last_result_status": "returned",
+    "semantic_cache": [
+      {
+        "semantic_query": "Runbook truyền thống cho quên mật khẩu: Điều khiển lỗi nhập mật khẩu của người dùng, gửi yêu cầu khôi phục mật khẩu qua hệ thống.\n\nQuery: Lấy runbook điều khiển lỗi nhập mật khẩu cho trường hợp quên mật khẩu của người dùng.",
+        "runbook_title": "reset password",
+        "service": "Active Directory"
+      }
+    ],
+    "last_action": "search"
+  },
+  "1331488b-00f0-406c-99a1-30ff1a9c8434": {
+    "mode": "clarifying",
+    "original_query": "tôi bị lỗi mailbox",
+    "clarify_turns": 0,
+    "pending_slot": "issue_type",
+    "slots": {
+      "issue_type": null,
+      "service": null,
+      "error_message": null
+    },
+    "history": [
+      {
+        "role": "user",
+        "text": "tôi bị lỗi mailbox"
+      },
+      {
+        "role": "assistant",
+        "text": "Bạn có thể mô tả rõ hơn vấn đề bạn đang gặp không?"
+      }
+    ],
+    "semantic_query": "tôi bị lỗi mailbox",
+    "last_runbook": null,
+    "tried_runbooks": [],
+    "last_result_status": null,
+    "semantic_cache": [],
+    "last_action": null
+  },
+  "057b5c31-23ef-4f23-9d2d-9c70e3976731": {
+    "mode": "clarifying",
+    "original_query": "tôi bị lỗi mailbox",
+    "clarify_turns": 3,
+    "pending_slot": "service | error_message | null",
+    "slots": {
+      "issue_type": "tôi bị lỗi khi đăng nhập outlook",
+      "service": null,
+      "error_message": "thông báo hết hạn mật khẩu"
+    },
+    "history": [
+      {
+        "role": "user",
+        "text": "tôi bị lỗi mailbox"
+      },
+      {
+        "role": "assistant",
+        "text": "\"Mailbox đang bị gỡ dựng hoặc có lỗi khi gửi/nhận email hoặc khi đăng nhập Outlook? Xin hãy cho tôi biết chi tiết về loại lỗi mà bạn đang gặp phải.\""
+      },
+      {
+        "role": "user",
+        "text": "tôi bị lỗi khi đăng nhập outlook"
+      },
+      {
+        "role": "assistant",
+        "text": "\"Xin lỗi vì bạn gặp sự cố khi đăng nhập Outlook. Bạn có thấy mã lỗi hoặc thông báo cụ thể nào, không?\""
+      },
+      {
+        "role": "user",
+        "text": "thông báo hết hạn mật khẩu"
+      },
+      {
+        "role": "assistant",
+        "text": "📘 Tiêu đề: reset password\n🖥 Dịch vụ: Active Directory\n\n🔹 Điều kiện thực hiện:\n- Tài khoản enabled\n- Tài khoản không bị khóa\n\n🔹 Các bước thực hiện:\n1. Truy cập ADSS theo link : https://adss.pvcb.vn\n2. Chọn nút Quên mật khẩu\n3. Nhập code MFA và đặt lại mật khẩu mới\n\n🔹 Kiểm tra sau thực hiện:\n- Truy cập Microsoft login hoặc exchange online. Nhập mật khẩu mới"
+      },
+      {
+        "role": "user",
+        "text": "remote mailbox"
+      },
+      {
+        "role": "assistant",
+        "text": "\"Bạn sử dụng remote mailbox để đăng nhập Outlook hoặc là gmail của Google? Vui lòng chỉ định dịch vụ cụ thể.\""
+      }
+    ],
+    "semantic_query": "Runbook truy xuất phù hợp: \"Tìm runbook để xử lý vấn đề khi người dùng gặp lỗi khi đăng nhập Outlook do mã lỗi hoặc thông báo là hết hạn mật khẩu.\"",
+    "last_runbook": {
+      "title": "reset password",
+      "service": "Active Directory",
+      "keyword": "Quên mật khẩu, đặt lại mật khẩu",
+      "description": "người dung quên mật khẩu hoặc hết hạn mật khẩu mà không đổi",
+      "precheck": [
+        "Tài khoản enabled",
+        "Tài khoản không bị khóa"
+      ],
+      "steps": [
+        "Truy cập ADSS theo link : https://adss.pvcb.vn",
+        "Chọn nút Quên mật khẩu",
+        "Nhập code MFA và đặt lại mật khẩu mới"
+      ],
+      "postcheck": [
+        "Truy cập Microsoft login hoặc exchange online. Nhập mật khẩu mới"
+      ],
+      "source_file": "D:\\Runbook\\RB_Reset password.docx",
+      "score": 0.7015700340270996
+    },
+    "tried_runbooks": [
+      "reset password"
+    ],
+    "last_result_status": "returned",
+    "semantic_cache": [
+      {
+        "semantic_query": "Runbook truy xuất phù hợp: \"Tìm runbook để xử lý vấn đề khi người dùng gặp lỗi khi đăng nhập Outlook do mã lỗi hoặc thông báo là hết hạn mật khẩu.\"",
+        "runbook_title": "reset password",
+        "service": "Active Directory"
+      }
+    ],
+    "last_action": "ask_more"
   }
 }

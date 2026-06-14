@@ -116,7 +116,9 @@ if st.button("📨 Gửi") and user_input.strip():
         answer = run_agent(SESSION_ID, user_input)
 
     # detect nếu là runbook (simple heuristic)
+    answer = answer or ""
     is_runbook = "📘" in answer
+
 
     messages.append({
         "role": "assistant",
