@@ -2,7 +2,7 @@ import json
 import re
 
 #from cachetools import cached
-
+from script.RB_query_faiss import retrieve_topk_candidates
 from app.llm import call_llm
 from app.session_store import get_session, update_session, reset_session
 from app.tool import tool_retrieve_candidates
@@ -415,11 +415,12 @@ def retrieve_candidates_meta(query, state):
     - không thực thi 'search runbook' theo nghĩa business
     """
     exclude_titles = state.get("tried_runbooks", [])
-    full_candidates = search_RB_topk(
+    full_candidates = retrieve_topk_candidates(
         query=query,
         exclude_titles=exclude_titles,
         topk=3
     )
+
 
     meta_candidates = []
     for i, rb in enumerate(full_candidates, start=1):
