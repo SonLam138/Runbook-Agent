@@ -1,5 +1,11 @@
-pip install streamlit
-cách chạy:
-streamlit run ui.py
-
-pip install --no-index --find-links=./offline_pkgs streamlit
+numpy==2.2.6
+sentence-transformers==5.5.1
+transformers==5.10.2
+tokenizers==0.22.2
+huggingface_hub==1.18.0
+numpy==2.2.6
+requests==2.34.2
+torch==2.12.0
+safetensors==0.8.0
+scipy==1.15.3
+tqdm==4.68.1
